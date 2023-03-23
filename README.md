@@ -1,6 +1,6 @@
-# FileDGR
+# Filedgr
 
-The FileDGR Data Wallet
+The Filedgr Data Wallet
 
 ## Getting Started
 
