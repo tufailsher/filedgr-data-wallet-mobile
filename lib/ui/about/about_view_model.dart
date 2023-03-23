@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 
+/// The ViewModel for the About screen.
 class AboutViewModel with ChangeNotifier {
   bool _disposed = false;
   bool progressBarStatus = false;
 
   String contentText = '';
 
+  /// Retrieves the data from the server.
   Future<void> getData() async {
     try {
       progressBarStatus = true;
@@ -18,7 +20,6 @@ class AboutViewModel with ChangeNotifier {
       // end request
 
     } on Exception catch (e) {
-      // log exception
       debugPrint('Error: $e');
     } finally {
       progressBarStatus = false;
@@ -34,6 +35,7 @@ class AboutViewModel with ChangeNotifier {
     }
   }
 
+  /// Disposes of the data.
   @override
   void dispose() {
     progressBarStatus = false;

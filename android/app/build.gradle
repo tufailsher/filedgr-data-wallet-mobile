@@ -42,6 +42,40 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    flavorDimensions "appType"
+    productFlavors {
+        dev {
+            dimension "appType"
+            resValue "string", "app_name", "FileDGR DEV"
+            applicationIdSuffix ".dev"
+        }
+        qa {
+            dimension "appType"
+            resValue "string", "app_name", "FileDGR QA"
+            applicationIdSuffix ".qa"
+        }
+        prod {
+            resValue "string", "app_name", "FileDGR"
+            dimension "appType"
+        }
+    }
+
+    // Define a variable that contains the app's name and use it for naming the .apk file
+    def appName
+    // Check if an applicationName property is supplied; if not use the name of the parent project.
+    if (project.hasProperty("applicationName")) {
+        appName = applicationName
+    } else {
+        appName = parent.name
+    }
+
+//    testBuildType "development"
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "versionName", variant.versionName
+        renameAPK(variant, appName)
+    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.sst.file_dgr"
@@ -59,6 +93,12 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+    }
+}
+
+def renameAPK(variant, appName) {
+    variant.outputs.all {
+        outputFileName = "${appName}-${variant.name}-${variant.versionName}.apk"
     }
 }
 

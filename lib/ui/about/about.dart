@@ -2,6 +2,7 @@ import 'package:file_dgr/ui/about/about_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// The about screen
 class About extends StatefulWidget {
   const About({Key? key}) : super(key: key);
 
@@ -12,6 +13,7 @@ class About extends StatefulWidget {
 class _AboutState extends State<About> {
   final _viewModel = AboutViewModel();
 
+  /// Initializes the state and retrieves the data.
   @override
   void initState() {
     super.initState();
@@ -37,8 +39,8 @@ class _AboutState extends State<About> {
             if (_viewModel.progressBarStatus) ...[
               const Center(
                 child: CircularProgressIndicator(color: Colors.black),
-              )
-            ]
+              ),
+            ],
           ],
         ),
       ),

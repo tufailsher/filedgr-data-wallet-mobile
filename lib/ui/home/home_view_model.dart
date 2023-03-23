@@ -1,13 +1,13 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 
+/// The ViewModel for the Home screen.
 class HomeViewModel with ChangeNotifier {
   bool _disposed = false;
   bool progressBarStatus = false;
 
   String contentText = '';
 
+  /// Retrieves the data from the server.
   Future<void> getData() async {
     try {
       progressBarStatus = true;
@@ -20,7 +20,6 @@ class HomeViewModel with ChangeNotifier {
       // end request
 
     } on Exception catch (e) {
-      // log exception
       debugPrint('Error: $e');
     } finally {
       progressBarStatus = false;
@@ -36,6 +35,7 @@ class HomeViewModel with ChangeNotifier {
     }
   }
 
+  /// Disposes of the data.
   @override
   void dispose() {
     progressBarStatus = false;

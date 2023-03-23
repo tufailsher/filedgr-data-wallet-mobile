@@ -2,6 +2,7 @@ import 'package:file_dgr/ui/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// The home screen
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -12,6 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _viewModel = HomeViewModel();
 
+  /// Initializes the state and retrieves the data.
   @override
   void initState() {
     super.initState();
@@ -38,8 +40,8 @@ class _HomeState extends State<Home> {
             if (_viewModel.progressBarStatus) ...[
               const Center(
                 child: CircularProgressIndicator(color: Colors.black),
-              )
-            ]
+              ),
+            ],
           ],
         ),
       ),
