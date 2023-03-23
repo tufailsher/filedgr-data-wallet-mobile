@@ -1,11 +1,15 @@
 import 'package:file_dgr/ui/about/about.dart';
 import 'package:file_dgr/ui/home/home.dart';
+import 'package:file_dgr/ui/utils/theme_provider.dart';
+import 'package:file_dgr/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 /// The main screen that hosts the *Home* and *About* screens.
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final ThemeProvider themeProvider;
+
+  const MainScreen({super.key, required this.themeProvider});
 
   @override
   State<MainScreen> createState() => _MainScreen();
@@ -53,11 +57,16 @@ class _MainScreen extends State<MainScreen> {
               child: Drawer(
                 child: AppDrawer(
                   selectedItem: _selectedItem,
+                  selectedThemeMode: widget.themeProvider.themeMode.name,
                   onSelected: (menuOption) {
                     Navigator.pop(context);
                     setState(() {
                       _selectedItem = menuOption;
                     });
+                  },
+                  onChangedTheme: (newThemeMode) {
+                    if (newThemeMode == null) return;
+                    widget.themeProvider.saveTheme(newThemeMode);
                   },
                 ),
               ),
@@ -75,28 +84,60 @@ class _MainScreen extends State<MainScreen> {
 /// The widget that displays the app drawer.
 class AppDrawer extends StatelessWidget {
   final MenuOption selectedItem;
+  final String selectedThemeMode;
   final Function(MenuOption) onSelected;
+  final Function(String?) onChangedTheme;
 
   const AppDrawer({
     Key? key,
     required this.selectedItem,
+    required this.selectedThemeMode,
     required this.onSelected,
+    required this.onChangedTheme,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
-        MenuItem(
-          MenuOption.home.title,
-          isSelected: MenuOption.home == selectedItem,
-          onTap: () => onSelected(MenuOption.home),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MenuItem(
+              MenuOption.home.title,
+              isSelected: MenuOption.home == selectedItem,
+              onTap: () => onSelected(MenuOption.home),
+            ),
+            MenuItem(
+              MenuOption.about.title,
+              isSelected: MenuOption.about == selectedItem,
+              onTap: () => onSelected(MenuOption.about),
+            ),
+          ],
         ),
-        MenuItem(
-          MenuOption.about.title,
-          isSelected: MenuOption.about == selectedItem,
-          onTap: () => onSelected(MenuOption.about),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Theme:', style: TextStyle(fontSize: 16)),
+              const SizedBox(width: 40),
+              DropdownButton<String>(
+                underline: const SizedBox(),
+                value: selectedThemeMode.capitalize(),
+                items: ThemeMode.values
+                    .map(
+                      (value) => DropdownMenuItem<String>(
+                    value: value.name.capitalize(),
+                    child: Text(value.name.capitalize()),
+                  ),
+                )
+                    .toList(),
+                onChanged: (newThemeMode) =>
+                    onChangedTheme(newThemeMode?.toLowerCase()),
+              ),
+            ],
+          ),
         ),
       ],
     );

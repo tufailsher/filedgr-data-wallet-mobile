@@ -36,3 +36,9 @@ You can either run a configuration using the ```flutter run --flavor <flavor_nam
 7. You should repeat these steps whenever you want to add a new configuration.
 
 **Note: Running the original *main.dart* configuration will result in a build that's not part of any of the flavors configured in this project.**
+
+
+### Running the tests
+
+The unit tests don't require any configurations. They can be ran as they are.
+The integration tests however need a little tweaking. You can either ran them using the following command: ```flutter test --flavor dev integration_test/``` or from the Android Studio IDE, but first you'll have to edit the test(s) configuration by adding the *--flavor dev* as an additional arg.

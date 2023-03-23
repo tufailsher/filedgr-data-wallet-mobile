@@ -38,8 +38,10 @@ class _HomeState extends State<Home> {
               child: Text(_viewModel.contentText),
             ),
             if (_viewModel.progressBarStatus) ...[
-              const Center(
-                child: CircularProgressIndicator(color: Colors.black),
+              Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ],
           ],

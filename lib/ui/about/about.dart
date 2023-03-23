@@ -26,6 +26,7 @@ class _AboutState extends State<About> {
     _viewModel.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
@@ -37,8 +38,10 @@ class _AboutState extends State<About> {
               child: Text(_viewModel.contentText),
             ),
             if (_viewModel.progressBarStatus) ...[
-              const Center(
-                child: CircularProgressIndicator(color: Colors.black),
+              Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ],
           ],
