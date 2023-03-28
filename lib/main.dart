@@ -8,6 +8,7 @@ void main() {
   runApp(const MyApp());
 }
 
+/// The main app widget.
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -18,6 +19,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _themeProvider = ThemeProvider();
 
+  /// Initializes the state and retrieves the current app's theme.
   @override
   void initState() {
     super.initState();

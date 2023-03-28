@@ -15,6 +15,7 @@ extension ColorExtension on Color {
   MaterialColor toMaterial() => _getMaterialColor(this);
 }
 
+/// Returns the [MaterialColor] equivalent of the given [color].
 MaterialColor _getMaterialColor(Color color) {
   final int red = color.red;
   final int green = color.green;
