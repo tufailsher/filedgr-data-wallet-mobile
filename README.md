@@ -1,5 +1,7 @@
 # FileDGR
 
+[![Codemagic build status](https://api.codemagic.io/apps/6422ed8975bc9acc439995f7/6422ed8975bc9acc439995f6/status_badge.svg)](https://codemagic.io/apps/6422ed8975bc9acc439995f7/6422ed8975bc9acc439995f6/latest_build)
+
 The FileDGR Data Wallet
 
 
