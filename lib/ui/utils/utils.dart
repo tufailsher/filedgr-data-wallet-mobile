@@ -5,4 +5,15 @@ extension StringExtension on String {
   String capitalize() {
     return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
+
+  List<String> splitAfterLast(String delimiter) {
+    final index = lastIndexOf(delimiter);
+    if (index == -1) {
+      return [this];
+    } else if (index + delimiter.length < length) {
+      return [substring(0, index), substring(index + delimiter.length, length)];
+    } else {
+      return [substring(0, index)];
+    }
+  }
 }

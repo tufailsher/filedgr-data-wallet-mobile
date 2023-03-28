@@ -1,4 +1,5 @@
 import 'package:file_dgr/ui/main/main_screen.dart';
+import 'package:file_dgr/ui/utils/app_colors.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,19 +33,32 @@ class _MyAppState extends State<MyApp> {
           title: 'FileDGR',
           theme: ThemeData(
             // This is the theme of your application.
-            //
-            // Try running your application with "flutter run". You'll see the
-            // application has a blue toolbar. Then, without quitting the app, try
-            // changing the primarySwatch below to Colors.green and then invoke
-            // "hot reload" (press "r" in the console where you ran "flutter run",
-            // or simply save your changes to "hot reload" in a Flutter IDE).
-            // Notice that the counter didn't reset back to zero; the application
-            // is not restarted.
-            primarySwatch: Colors.blue,
+            brightness: Brightness.light,
+            // primarySwatch: AppColors.turquoise.toMaterial(),
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: AppColors.turquoise.toMaterial(),
+            ).copyWith(
+              primary: AppColors.darkBlue,
+              primaryContainer: Colors.grey,
+            ),
+            fontFamily: 'ProximaNova',
           ),
-          darkTheme: ThemeData.dark(),
+          darkTheme: ThemeData(
+            // This is the dark theme of your application.
+            brightness: Brightness.dark,
+            colorScheme: ThemeData.dark().colorScheme.copyWith(
+                  primary: AppColors.turquoise,
+                  primaryContainer: AppColors.darkBlue500,
+                  surface: AppColors.darkBlue500,
+                ),
+            canvasColor: AppColors.darkBlue,
+            scaffoldBackgroundColor: AppColors.darkBlue,
+            fontFamily: 'ProximaNova',
+          ),
           themeMode: _themeProvider.themeMode,
-          home: MainScreen(themeProvider: _themeProvider,),
+          home: MainScreen(
+            themeProvider: _themeProvider,
+          ),
         ),
       ),
     );

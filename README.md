@@ -8,7 +8,7 @@ The FileDGR Data Wallet
 **Language**: Dart <br>
 **Architecture**: Provider oriented<br>
 **State management**: Provider<br>
-**Compiled for**: Android, iOS
+**Compiled for**: Android, iOS<br>
 **Key-Value Local Files**: Shared Preferences/User Defaults <br>
 **Requests**: http <br>
 **Request Logger**: Alice <br>

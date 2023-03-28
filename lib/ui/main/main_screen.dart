@@ -1,5 +1,7 @@
 import 'package:file_dgr/ui/about/about.dart';
 import 'package:file_dgr/ui/home/home.dart';
+import 'package:file_dgr/ui/utils/app_colors.dart';
+import 'package:file_dgr/ui/utils/assets.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:file_dgr/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,10 @@ class _MainScreen extends State<MainScreen> {
       children: [
         Scaffold(
           appBar: AppBar(
-            title: Text('FileDGR'.toUpperCase()),
+            title: Image(
+              image: Assets.image(context, 'app_bar_icon.png'),
+              height: 48.0,
+            ),
           ),
           body: Builder(builder: (context) {
             if (_selectedItem == MenuOption.home) {
@@ -104,12 +109,14 @@ class AppDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MenuItem(
-              MenuOption.home.title,
+              title: MenuOption.home.title,
+              icon: Icons.home,
               isSelected: MenuOption.home == selectedItem,
               onTap: () => onSelected(MenuOption.home),
             ),
             MenuItem(
-              MenuOption.about.title,
+              title: MenuOption.about.title,
+              icon: Icons.info,
               isSelected: MenuOption.about == selectedItem,
               onTap: () => onSelected(MenuOption.about),
             ),
@@ -121,17 +128,17 @@ class AppDrawer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Theme:', style: TextStyle(fontSize: 16)),
-              const SizedBox(width: 40),
+              const SizedBox(width: 20),
               DropdownButton<String>(
                 underline: const SizedBox(),
                 value: selectedThemeMode.capitalize(),
                 items: ThemeMode.values
                     .map(
                       (value) => DropdownMenuItem<String>(
-                    value: value.name.capitalize(),
-                    child: Text(value.name.capitalize()),
-                  ),
-                )
+                        value: value.name.capitalize(),
+                        child: Text(value.name.capitalize()),
+                      ),
+                    )
                     .toList(),
                 onChanged: (newThemeMode) =>
                     onChangedTheme(newThemeMode?.toLowerCase()),
@@ -146,23 +153,34 @@ class AppDrawer extends StatelessWidget {
 
 /// The widget that displays a menu option.
 class MenuItem extends StatelessWidget {
-  final String label;
+  final String title;
+  final IconData icon;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const MenuItem(
-    this.label, {
+  const MenuItem({
     Key? key,
+    required this.title,
+    required this.icon,
     required this.isSelected,
     required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(label),
-      onTap: onTap,
-      selected: isSelected,
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0),
+      child: ListTile(
+        selectedTileColor:
+            isSelected ? Theme.of(context).colorScheme.primaryContainer : Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        leading: Icon(icon),
+        title: Text(title),
+        onTap: onTap,
+        selected: isSelected,
+      ),
     );
   }
 }
