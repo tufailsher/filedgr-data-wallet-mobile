@@ -61,6 +61,9 @@ dependencies:
   # A package for retrieving the flavor name of the app
   package_info_plus: ^3.0.3
 
+  flutter_localizations:
+    sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -124,3 +127,5 @@ flutter:
     - family: ProximaNova
       fonts:
         - asset: fonts/Proxima-Nova.otf
+flutter_intl:
+  enabled: true

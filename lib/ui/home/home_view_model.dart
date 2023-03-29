@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:file_dgr/core/responses/hello_response.dart';
+import 'package:file_dgr/ui/utils/flavor_settings.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
 /// The ViewModel for the Home screen.
 class HomeViewModel with ChangeNotifier {
@@ -7,16 +12,22 @@ class HomeViewModel with ChangeNotifier {
 
   String contentText = '';
 
+  late FlavorSettings _flavorSettings;
+
   /// Retrieves the data from the server.
   Future<void> getData() async {
     try {
+      _flavorSettings = await FlavorSettings.getSettings();
       progressBarStatus = true;
       notifyListeners();
 
       // do request
-      await Future.delayed(const Duration(seconds: 3), () {
-        contentText = 'HOME: My awesome but simple text!';
-      });
+      final response = await http.get(
+        Uri.parse('${_flavorSettings.baseUrl}/mock/hello'),
+      );
+      final json = jsonDecode(response.body);
+      final helloResponse = HelloResponse.fromJson(json);
+      contentText = 'Hello ${helloResponse.name}';
       // end request
 
     } on Exception catch (e) {

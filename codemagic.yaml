@@ -1,13 +1,12 @@
 workflows:
-  android-workflow:
-    name: Android Workflow
+  android-dev-workflow:
+    name: Android Dev Workflow
     max_build_duration: 120
     environment:
       android_signing:
         - keystore_reference
-      vars:
-        PACKAGE_NAME: "com.sst.filedgr"
-        GOOGLE_PLAY_TRACK: alpha
+      groups:
+        - google_credentials
       flutter: stable
     scripts:
       - name: Set up local.properties
@@ -33,14 +32,95 @@ workflows:
     publishing:
       email:
         recipients:
-          - user_1@example.com
-          - user_2@example.com
+          - m.borcan@filedgr.com
         notify:
           success: true
-          failure: false
+          failure: true
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: $GOOGLE_PLAY_TRACK
+        track: internal
+        submit_as_draft: true
+  android-qa-workflow:
+    name: Android QA Workflow
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_credentials
+      flutter: stable
+    scripts:
+      - name: Set up local.properties
+        script: | 
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: | 
+          flutter packages pub get
+      - name: Flutter analyze
+        script: | 
+          flutter analyze
+      - name: Flutter unit tests
+        script: | 
+          flutter test
+        ignore_failure: true
+      - name: Build AAB with Flutter
+        script: | 
+          flutter build appbundle --release --flavor qa
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - m.borcan@filedgr.com
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true
+  android-prod-workflow:
+    name: Android Prod Workflow
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_credentials
+      flutter: stable
+    scripts:
+      - name: Set up local.properties
+        script: | 
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: | 
+          flutter packages pub get
+      - name: Flutter analyze
+        script: | 
+          flutter analyze
+      - name: Flutter unit tests
+        script: | 
+          flutter test
+        ignore_failure: true
+      - name: Build AAB with Flutter
+        script: | 
+          flutter build appbundle --release --flavor prod
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - m.borcan@filedgr.com
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
         submit_as_draft: true
   ios-workflow:
     name: iOS Workflow
@@ -50,7 +130,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.sst.filedgr
+        bundle_identifier: com.filedgr.datawallet.temp
       vars:
         APP_ID: 1555555551
       flutter: stable
@@ -84,11 +164,10 @@ workflows:
     publishing:
       email:
         recipients:
-          - user_1@example.com
-          - user_2@example.com
+          - m.borcan@filedgr.com
         notify:
           success: true
-          failure: false
+          failure: true
       app_store_connect:
         auth: integration
 

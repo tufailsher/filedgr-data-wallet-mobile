@@ -1,3 +1,4 @@
+import 'package:file_dgr/generated/l10n.dart';
 import 'package:file_dgr/ui/about/about_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class _AboutState extends State<About> {
         builder: (_, __, ___) => Stack(
           children: [
             Center(
-              child: Text(_viewModel.contentText),
+              child: Text(S.of(context).title),
             ),
             if (_viewModel.progressBarStatus) ...[
               Center(

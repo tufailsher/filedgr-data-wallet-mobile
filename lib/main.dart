@@ -2,7 +2,10 @@ import 'package:file_dgr/ui/main/main_screen.dart';
 import 'package:file_dgr/ui/utils/app_colors.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+
+import 'generated/l10n.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +35,13 @@ class _MyAppState extends State<MyApp> {
       value: _themeProvider,
       builder: (context, _) => Consumer<ThemeProvider>(
         builder: (_, __, ___) => MaterialApp(
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           title: 'FileDGR',
           theme: ThemeData(
             // This is the theme of your application.
