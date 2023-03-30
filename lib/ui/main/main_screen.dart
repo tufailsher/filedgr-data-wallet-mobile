@@ -1,6 +1,5 @@
 import 'package:file_dgr/ui/about/about.dart';
 import 'package:file_dgr/ui/home/home.dart';
-import 'package:file_dgr/ui/utils/app_colors.dart';
 import 'package:file_dgr/ui/utils/assets.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:file_dgr/ui/utils/utils.dart';
