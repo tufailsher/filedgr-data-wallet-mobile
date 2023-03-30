@@ -10,7 +10,7 @@ void main() {
 
   test('Theme Mode updates successfully', () async {
     SharedPreferences.setMockInitialValues({});
-    
+
     final themeProvider = ThemeProvider();
     expect(themeProvider.themeMode, ThemeMode.system);
 

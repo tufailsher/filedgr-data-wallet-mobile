@@ -36,7 +36,7 @@ You can either run a configuration using the ```flutter run --flavor <flavor_nam
 
 1. Click on arrow icon next to *main.dart* found on the top bar. Click on *Edit Configurations*.
 2. Add a new *Flutter* configuration.
-3. Copy everything from the *main.dart* configuration to the new one.
+3. Copy everything from the *main.dart* configuration to the new one. Replace the *Dart entrypoint* file to either *main-dev.dart* (for the dev flavor) or *main-qa.dart* (for the qa flavor). The production configuration will use the original *main.dart* file.
 4. Give the new configuration an appropriate name (e.g.: main-dev, main-qa, main-prod, etc).
 5. Set the *Build flavor* field to the flavor name you want to run.
 6. Press *Apply* and then run the project.

@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "96028075799",
+    "project_id": "filedgr-data-wallet",
+    "storage_bucket": "filedgr-data-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96028075799:android:befa52f5ec8c3f81537952",
+        "android_client_info": {
+          "package_name": "com.filedgr.datawallet.temp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWHc7It3DxY2XL9ZxYAp00rKmtMoBy-Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "96028075799-14k9ds3k1ve5srm6dl898bn8cfd78mk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.filedgr.datawallet.temp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96028075799:android:00e2346f7a6e6c22537952",
+        "android_client_info": {
+          "package_name": "com.filedgr.datawallet.temp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWHc7It3DxY2XL9ZxYAp00rKmtMoBy-Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "96028075799-14k9ds3k1ve5srm6dl898bn8cfd78mk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.filedgr.datawallet.temp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96028075799:android:a6597b01b35386d3537952",
+        "android_client_info": {
+          "package_name": "com.filedgr.datawallet.temp.qa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWHc7It3DxY2XL9ZxYAp00rKmtMoBy-Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96028075799-5ag792bgqr0irmo737v2po2u6p72s3bb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "96028075799-14k9ds3k1ve5srm6dl898bn8cfd78mk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.filedgr.datawallet.temp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

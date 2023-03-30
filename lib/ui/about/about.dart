@@ -36,7 +36,7 @@ class _AboutState extends State<About> {
         builder: (_, __, ___) => Stack(
           children: [
             Center(
-              child: Text(S.of(context).title),
+              child: Text(_viewModel.contentText),
             ),
             if (_viewModel.progressBarStatus) ...[
               Center(

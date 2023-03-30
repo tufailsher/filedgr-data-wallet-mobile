@@ -1,11 +1,12 @@
-import 'package:file_dgr/main.dart';
+import 'package:file_dgr/my_app.dart';
 import 'package:file_dgr/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
 void main() {
-  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('Tapping on the Theme Switcher changes the theme',
       (tester) async {
