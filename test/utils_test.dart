@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   test('Theme Mode updates successfully', () async {
     final themeProvider = ThemeProvider();
     expect(themeProvider.themeMode, ThemeMode.system);
