@@ -21,7 +21,7 @@ workflows:
       - name: Flutter unit tests
         script: | 
           flutter test
-        ignore_failure: true
+        ignore_failure: false
       - name: Build AAB with Flutter
         script: | 
           flutter build appbundle --release --flavor dev
@@ -62,7 +62,7 @@ workflows:
       - name: Flutter unit tests
         script: | 
           flutter test
-        ignore_failure: true
+        ignore_failure: false
       - name: Build AAB with Flutter
         script: | 
           flutter build appbundle --release --flavor qa
@@ -103,7 +103,7 @@ workflows:
       - name: Flutter unit tests
         script: | 
           flutter test
-        ignore_failure: true
+        ignore_failure: false
       - name: Build AAB with Flutter
         script: | 
           flutter build appbundle --release --flavor prod
@@ -150,7 +150,7 @@ workflows:
       - name: Flutter unit tests
         script: | 
           flutter test
-        ignore_failure: true
+        ignore_failure: false
       - name: Flutter build ipa
         script: | 
           flutter build ipa --release \
