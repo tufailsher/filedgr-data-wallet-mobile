@@ -1,4 +1,4 @@
-import 'package:file_dgr/my_app.dart';
+import 'package:file_dgr/main.dart';
 import 'package:file_dgr/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
