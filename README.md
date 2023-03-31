@@ -24,7 +24,7 @@ The FileDGR Data Wallet
 **Documentation Generator**: dart doc
 
 
-### Generating the documentation
+### Generate the documentation
 
 The project is fully documented. In order to generate the documentation you only have to run ``dart doc``. The documentation can then be found in *doc > api*. The main file you have to open to see the documentation properly is **index.html**.
 
@@ -36,16 +36,23 @@ You can either run a configuration using the ```flutter run --flavor <flavor_nam
 
 1. Click on arrow icon next to *main.dart* found on the top bar. Click on *Edit Configurations*.
 2. Add a new *Flutter* configuration.
-3. Copy everything from the *main.dart* configuration to the new one. Replace the *Dart entrypoint* file to either *main-dev.dart* (for the dev flavor) or *main-qa.dart* (for the qa flavor). The production configuration will use the original *main.dart* file.
-4. Give the new configuration an appropriate name (e.g.: main-dev, main-qa, main-prod, etc).
+3. Copy everything from the *main.dart* configuration to the new one.
+4. Give the new configuration an appropriate name (e.g.: main-dev).
 5. Set the *Build flavor* field to the flavor name you want to run.
-6. Press *Apply* and then run the project.
-7. You should repeat these steps whenever you want to add a new configuration.
+6. Press *Apply*.
+7. Repeat these steps for the **qa** flavor.
+8. Rename the original *main.dart* to *main-prod* and set the flavor name to *prod*.
+9. You can now run any of the versions you want.
 
-**Note: Running the original *main.dart* configuration will result in a build that's not part of any of the flavors configured in this project.**
+**Note: Don't run a regular configuration of the *main.dart* file becayse it will result in a build that's not part of any of the flavors configured in this project.**
 
 
-### Running the tests
+### Run the tests
 
 The unit tests don't require any configurations. They can be ran as they are.
 The integration tests however need a little tweaking. You can either ran them using the following command: ```flutter test --flavor dev integration_test/``` or from the Android Studio IDE, but first you'll have to edit the test(s) configuration by adding the *--flavor dev* as an additional arg.
+
+
+### Build a release version
+
+For building & running a release version of a flavor you can either add a new configuration with the argument *--release* or run the following command: ```flutter run --release --flavor <flavor_name>```.
