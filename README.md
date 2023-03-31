@@ -18,8 +18,7 @@ The FileDGR Data Wallet
 **Compiled for**: Android, iOS<br>
 **Key-Value Local Files**: Shared Preferences/User Defaults <br>
 **Requests**: http <br>
-**Request Logger**: Alice <br>
-**Crash Logger**: Firebase Crashlytics <br>
+**Crash Logger**: Firebase Crashlytics *(configured individually for both Android and iOS and for each Flavor/Build Configuration)*<br>
 **Product Flavors**: dev/qa/prod <br>
 **Documentation Generator**: dart doc
 
