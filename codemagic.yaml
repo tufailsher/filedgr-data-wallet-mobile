@@ -122,15 +122,15 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
-  ios-workflow:
-    name: iOS Workflow
+  ios-dev-workflow:
+    name: iOS Dev Workflow
     max_build_duration: 120
     integrations:
-      app_store_connect: codemagic
+      app_store_connect: Codemagic CI/CD
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.filedgr.datawallet.temp
+        bundle_identifier: com.filedgr.datawallet.temp1.dev
       vars:
         APP_ID: 1555555551
       flutter: stable
@@ -153,7 +153,7 @@ workflows:
         ignore_failure: false
       - name: Flutter build ipa
         script: | 
-          flutter build ipa --release \
+          flutter build ipa --release --flavor dev \
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
