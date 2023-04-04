@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>96028075799-7uughdm3up8i7c4cg9q6ractj7cgb8ts.apps.googleusercontent.com</string>
+	<string>96028075799-blkl1rgv7u4jd62jocsk87rrfisst729.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.96028075799-7uughdm3up8i7c4cg9q6ractj7cgb8ts</string>
+	<string>com.googleusercontent.apps.96028075799-blkl1rgv7u4jd62jocsk87rrfisst729</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAYb3R4d8yJ0O-dSDGE9Z5I4m-8--rDPz0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.filedgr.datawallet.temp1</string>
+	<string>com.filedgr.datawallet.temp1.qa</string>
 	<key>PROJECT_ID</key>
 	<string>filedgr-data-wallet</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:96028075799:ios:630b825175974823537952</string>
+	<string>1:96028075799:ios:98eb04b7b77d7dda537952</string>
 </dict>
 </plist>
