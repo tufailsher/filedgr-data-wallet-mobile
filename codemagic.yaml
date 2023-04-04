@@ -138,24 +138,13 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: | 
           xcode-project use-profiles
-      - name: Setup CocoaPods
-        script: | 
-          echo "Uninstalling all CocoaPods versions"
-          sudo gem uninstall cocoapods --all --executables
-
-          echo "Installing ActiveSupport"
-          sudo gem install activesupport -v 6.1.7.3
-          
-          COCOAPODS_VER=`find . -name "Podfile.lock" -exec sed -n -e 's/^COCOAPODS: \([0-9.]*\)/\1/p' {} +`
-          
-          echo "Installing CocoaPods version $COCOAPODS_VER"
-          sudo gem install cocoapods -v $COCOAPODS_VER
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
       - name: Install pods
         script: | 
-          find . -name "Podfile" -execdir pod install \;
+          cd ios
+          pod install
       - name: Flutter analyze
         script: | 
           flutter analyze
