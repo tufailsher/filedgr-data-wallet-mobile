@@ -141,12 +141,15 @@ workflows:
       - name: Setup CocoaPods
         script: | 
           echo "Uninstalling all CocoaPods versions"
-          brew uninstall cocoapods --all --executables
+          sudo gem uninstall cocoapods --all --executables
+
+          echo "Installing ActiveSupport"
+          sudo gem install activesupport -v 6.1.7.3
           
           COCOAPODS_VER=`find . -name "Podfile.lock" -exec sed -n -e 's/^COCOAPODS: \([0-9.]*\)/\1/p' {} +`
           
           echo "Installing CocoaPods version $COCOAPODS_VER"
-          brew install cocoapods -v $COCOAPODS_VER
+          sudo gem install cocoapods -v $COCOAPODS_VER
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
@@ -197,7 +200,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: com.filedgr.datawallet.temp1.qa
       vars:
-        APP_ID: 6447195536
+        APP_ID: 6447238765
       flutter: stable
     scripts:
       - name: Set up code signing settings on Xcode project
@@ -253,7 +256,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: com.filedgr.datawallet.temp1
       vars:
-        APP_ID: 6447195536
+        APP_ID: 6447239036
       flutter: stable
     scripts:
       - name: Set up code signing settings on Xcode project
