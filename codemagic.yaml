@@ -138,7 +138,7 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: | 
           xcode-project use-profiles
-      - name: Setup Cocoapods
+      - name: Setup CocoaPods
         script: | 
           echo "Uninstalling all CocoaPods versions"
           sudo gem uninstall cocoapods --all --executables
