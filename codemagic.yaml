@@ -257,7 +257,6 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: | 
           xcode-project use-profiles
-      - name: Setup Cocoapods
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
