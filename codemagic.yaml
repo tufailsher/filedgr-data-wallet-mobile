@@ -138,6 +138,15 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: | 
           xcode-project use-profiles
+      - name: Setup Cocoapods
+        script: | 
+          echo "Uninstalling all CocoaPods versions"
+          sudo gem uninstall cocoapods --all --executables
+
+          COCOAPODS_VER=`sed -n -e 's/^COCOAPODS: \([0-9.]*\)/\1/p' Podfile.lock`
+
+          echo "Installing CocoaPods version $COCOAPODS_VER"
+          sudo gem install cocoapods -v $COCOAPODS_VER
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
@@ -179,7 +188,7 @@ workflows:
         # Note: This action is performed during post-processing.
         submit_to_app_store: false
   ios-qa-workflow:
-    name: iOS Qa Workflow
+    name: iOS QA Workflow
     max_build_duration: 120
     integrations:
       app_store_connect: Codemagic CI/CD
@@ -235,7 +244,7 @@ workflows:
         # Note: This action is performed during post-processing.
         submit_to_app_store: false
   ios-prod-workflow:
-    name: iOS Dev Workflow
+    name: iOS Prod Workflow
     max_build_duration: 120
     integrations:
       app_store_connect: Codemagic CI/CD
@@ -250,6 +259,7 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: | 
           xcode-project use-profiles
+      - name: Setup Cocoapods
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
