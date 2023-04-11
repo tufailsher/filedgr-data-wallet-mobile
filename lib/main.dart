@@ -1,5 +1,6 @@
 import 'package:file_dgr/ui/main/main_screen.dart';
 import 'package:file_dgr/ui/utils/app_colors.dart';
+import 'package:file_dgr/ui/utils/locale_provider.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -31,20 +32,26 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _themeProvider = ThemeProvider();
+  final _localeProvider = LocaleProvider();
 
   /// Initializes the state and retrieves the current app's theme.
   @override
   void initState() {
     super.initState();
     _themeProvider.getTheme();
+    _localeProvider.getLocale();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: _themeProvider,
-      builder: (context, _) => Consumer<ThemeProvider>(
-        builder: (_, __, ___) => MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: _themeProvider),
+        ChangeNotifierProvider.value(value: _localeProvider)
+      ],
+      child: Consumer2<ThemeProvider, LocaleProvider>(
+        builder: (_, __, ___, ____) => MaterialApp(
+          locale: _localeProvider.locale,
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -69,10 +76,10 @@ class _MyAppState extends State<MyApp> {
             // This is the dark theme of your application.
             brightness: Brightness.dark,
             colorScheme: ThemeData.dark().colorScheme.copyWith(
-              primary: AppColors.turquoise,
-              primaryContainer: AppColors.darkBlue500,
-              surface: AppColors.darkBlue500,
-            ),
+                  primary: AppColors.turquoise,
+                  primaryContainer: AppColors.darkBlue500,
+                  surface: AppColors.darkBlue500,
+                ),
             canvasColor: AppColors.darkBlue,
             scaffoldBackgroundColor: AppColors.darkBlue,
             fontFamily: 'ProximaNova',
@@ -80,6 +87,7 @@ class _MyAppState extends State<MyApp> {
           themeMode: _themeProvider.themeMode,
           home: MainScreen(
             themeProvider: _themeProvider,
+            localeProvider: _localeProvider,
           ),
         ),
       ),

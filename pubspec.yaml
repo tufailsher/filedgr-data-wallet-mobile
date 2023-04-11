@@ -133,3 +133,5 @@ flutter:
         - asset: fonts/Proxima-Nova.otf
 flutter_intl:
   enabled: true
+  localizely:
+    project_id: 7e194288-c854-47f9-a31d-7f62013cd7bc

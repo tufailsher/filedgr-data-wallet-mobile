@@ -50,7 +50,47 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  // skipped getter for the 'about.ABOUT_FILEDGR' key
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'about.about_filedgr' key
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language:`
+  String get language_ {
+    return Intl.message(
+      'Language:',
+      name: 'language_',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme:`
+  String get theme_ {
+    return Intl.message(
+      'Theme:',
+      name: 'theme_',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `FILEDGR`
   String get title {
@@ -69,6 +109,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'de'),
     ];
   }
 

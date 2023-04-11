@@ -1,6 +1,8 @@
+import 'package:file_dgr/generated/l10n.dart';
 import 'package:file_dgr/ui/about/about.dart';
 import 'package:file_dgr/ui/home/home.dart';
 import 'package:file_dgr/ui/utils/assets.dart';
+import 'package:file_dgr/ui/utils/locale_provider.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:file_dgr/ui/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,13 @@ import 'package:package_info_plus/package_info_plus.dart';
 /// The main screen that hosts the *Home* and *About* screens.
 class MainScreen extends StatefulWidget {
   final ThemeProvider themeProvider;
+  final LocaleProvider localeProvider;
 
-  const MainScreen({super.key, required this.themeProvider});
+  const MainScreen({
+    super.key,
+    required this.themeProvider,
+    required this.localeProvider,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreen();
@@ -62,6 +69,9 @@ class _MainScreen extends State<MainScreen> {
                 child: AppDrawer(
                   selectedItem: _selectedItem,
                   selectedThemeMode: widget.themeProvider.themeMode.name,
+                  selectedLocale:
+                      widget.localeProvider.supportedLocale,
+                  locales: widget.localeProvider.supportedLocales,
                   onSelected: (menuOption) {
                     Navigator.pop(context);
                     setState(() {
@@ -71,6 +81,10 @@ class _MainScreen extends State<MainScreen> {
                   onChangedTheme: (newThemeMode) {
                     if (newThemeMode == null) return;
                     widget.themeProvider.saveTheme(newThemeMode);
+                  },
+                  onChangedLocale: (language) {
+                    if (language == null) return;
+                    widget.localeProvider.saveLocale(language);
                   },
                 ),
               ),
@@ -89,15 +103,21 @@ class _MainScreen extends State<MainScreen> {
 class AppDrawer extends StatelessWidget {
   final MenuOption selectedItem;
   final String selectedThemeMode;
+  final SupportedLocale? selectedLocale;
+  final List<SupportedLocale> locales;
   final Function(MenuOption) onSelected;
   final Function(String?) onChangedTheme;
+  final Function(String?) onChangedLocale;
 
   const AppDrawer({
     Key? key,
     required this.selectedItem,
     required this.selectedThemeMode,
+    required this.selectedLocale,
+    required this.locales,
     required this.onSelected,
     required this.onChangedTheme,
+    required this.onChangedLocale,
   }) : super(key: key);
 
   @override
@@ -123,24 +143,58 @@ class AppDrawer extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Theme:', style: TextStyle(fontSize: 16)),
-              const SizedBox(width: 20),
-              DropdownButton<String>(
-                underline: const SizedBox(),
-                value: selectedThemeMode.capitalize(),
-                items: ThemeMode.values
-                    .map(
-                      (value) => DropdownMenuItem<String>(
-                        value: value.name.capitalize(),
-                        child: Text(value.name.capitalize()),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (newThemeMode) =>
-                    onChangedTheme(newThemeMode?.toLowerCase()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    S.of(context).theme_,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(width: 20),
+                  DropdownButton<String>(
+                    underline: const SizedBox(),
+                    value: selectedThemeMode.capitalize(),
+                    items: ThemeMode.values
+                        .map(
+                          (value) => DropdownMenuItem<String>(
+                            value: value.name.capitalize(),
+                            child: Text(value.name.capitalize()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (newThemeMode) => onChangedTheme(
+                      newThemeMode?.toLowerCase(),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    S.of(context).language_,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(width: 20),
+                  DropdownButton<String>(
+                    underline: const SizedBox(),
+                    value: selectedLocale?.language.capitalize(),
+                    items: locales
+                        .map(
+                          (value) => DropdownMenuItem<String>(
+                            value: value.language.capitalize(),
+                            child: Text(value.language.capitalize()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (language) => onChangedLocale(
+                      language?.toLowerCase(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -170,8 +224,9 @@ class MenuItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0),
       child: ListTile(
-        selectedTileColor:
-            isSelected ? Theme.of(context).colorScheme.primaryContainer : Colors.transparent,
+        selectedTileColor: isSelected
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -186,10 +241,15 @@ class MenuItem extends StatelessWidget {
 
 /// An enum that lists all options that will be displayed in the menu.
 enum MenuOption {
-  home('Home'),
-  about('About');
+  home,
+  about;
 
-  const MenuOption(this.title);
-
-  final String title;
+  String get title {
+    switch (this) {
+      case MenuOption.home:
+        return S.current.home;
+      case MenuOption.about:
+        return S.current.about;
+    }
+  }
 }
