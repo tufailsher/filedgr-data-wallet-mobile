@@ -27,7 +27,7 @@ class HomeViewModel with ChangeNotifier {
       );
       final json = jsonDecode(response.body);
       final helloResponse = HelloResponse.fromJson(json);
-      contentText = 'Hello ${helloResponse.name}';
+      contentText = helloResponse.name;
       // end request
 
     } on Exception catch (e) {

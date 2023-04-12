@@ -1,3 +1,4 @@
+import 'package:file_dgr/generated/l10n.dart';
 import 'package:file_dgr/ui/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,11 @@ class _HomeState extends State<Home> {
       child: Consumer<HomeViewModel>(
         builder: (_, __, ___) => Stack(
           children: [
-            Center(
-              child: Text(_viewModel.contentText),
-            ),
-            if (_viewModel.progressBarStatus) ...[
+            if (!_viewModel.progressBarStatus) ...[
+              Center(
+                child: Text(S.current.hello_(_viewModel.contentText)),
+              ),
+            ] else ...[
               Center(
                 child: CircularProgressIndicator(
                   color: Theme.of(context).colorScheme.onSurface,

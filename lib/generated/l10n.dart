@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Hello {name}`
+  String hello_(String name) {
+    return Intl.message(
+      'Hello $name',
+      name: 'hello_',
+      desc: '',
+      args: [name],
+    );
+  }
+
   /// `Home`
   String get home {
     return Intl.message(

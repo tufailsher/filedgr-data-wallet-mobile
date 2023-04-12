@@ -2,6 +2,14 @@
   "@@locale": "en",
   "about": "About",
   "@about": {},
+  "hello_": "Hello {name}",
+  "@hello_": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "home": "Home",
   "@home": {},
   "language_": "Language:",
