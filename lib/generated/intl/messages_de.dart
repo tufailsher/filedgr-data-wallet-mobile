@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("Über"),
         "home": MessageLookupByLibrary.simpleMessage("Heim"),
         "language_": MessageLookupByLibrary.simpleMessage("Sprache:"),
-        "theme_": MessageLookupByLibrary.simpleMessage("Thema"),
+        "theme_": MessageLookupByLibrary.simpleMessage("Thema:"),
         "title": MessageLookupByLibrary.simpleMessage("FILEDGR")
       };
 }

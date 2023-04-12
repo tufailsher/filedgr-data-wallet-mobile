@@ -60,8 +60,6 @@ class S {
     );
   }
 
-  // skipped getter for the 'about.about_filedgr' key
-
   /// `Home`
   String get home {
     return Intl.message(

@@ -55,3 +55,18 @@ The integration tests however need a little tweaking. You can either ran them us
 ### Build a release version
 
 For building & running a release version of a flavor you can either add a new configuration with the argument *--release* or run the following command: ```flutter run --release --flavor <flavor_name>```.
+
+
+### Generating the language files
+
+The app uses *.arb* files to provide proper translations for the strings inside it. The project is
+built using *(Localizely)[https://localizely.com/]*, so that the translations can be done on their
+dashboard and from Android Studio, the developer only needs to sync with whatever is on the web.
+Here are the steps you need to follow to be able to sync the language files:
+
+1. Install the *Flutter Intl* plugin on Android Studio.
+2. Go to the *My Projects* section from the web dashboard to get the project id and save it somewhere. Then go to your profile and also save the API Token.
+3. Click on *Tools > Flutter Intl > Integrate with Localizely > Connect*. Enter the project id and the API Token from the previous step and wait for the process to complete.
+4. If you already have some translations in place on the web dashboard, to override the local files click on *Tools > Fluter Intl > Integrate with Localizely > Download ARB Files*.
+5. Whenever you add a new translation string, you should add it in the main file (the *intl_en.arb* one) and then use the *Upload main ARB file* to upload the new file to the web dashboard. Afterwards, provide translations on the web and then sync the project language files using the previous step.
+6. **Whenever you add a new locale, you must also add a proper entry in the *SupportedLocale* enum from the `local_provider.dart` file!**

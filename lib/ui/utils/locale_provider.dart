@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocaleProvider extends ChangeNotifier {
   Locale? locale;
 
+  static const _localeCodeKey = 'locale_code';
+
   final supportedLocales = [
     SupportedLocale.english,
     SupportedLocale.german,
@@ -19,8 +21,12 @@ class LocaleProvider extends ChangeNotifier {
   /// and updates the class [locale] field.
   Future<void> getLocale() async {
     final sharedPref = await SharedPreferences.getInstance();
-    final localeCode = sharedPref.getString('locale_code');
-    if (localeCode == null) return;
+    var localeCode = sharedPref.getString(_localeCodeKey);
+    if (localeCode == null) {
+      // Set the english as the default locale
+      sharedPref.setString(_localeCodeKey, 'en');
+      localeCode = 'en';
+    }
 
     locale = Locale.fromSubtags(languageCode: localeCode);
     notifyListeners();
@@ -34,11 +40,13 @@ class LocaleProvider extends ChangeNotifier {
     if (sLocale == null) return;
 
     locale = Locale.fromSubtags(languageCode: sLocale.languageCode);
-    sharedPref.setString('locale_code', sLocale.languageCode);
+    sharedPref.setString(_localeCodeKey, sLocale.languageCode);
     notifyListeners();
   }
 }
 
+/// An enum that lists all the supported locales. Whenever you add a new locale,
+/// you must also update this class!
 enum SupportedLocale {
   english("English", "en"),
   german("German", "de");
