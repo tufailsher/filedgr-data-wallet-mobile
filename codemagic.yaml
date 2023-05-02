@@ -1,6 +1,13 @@
 workflows:
   android-dev-workflow:
     name: Android Dev Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'dev'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     environment:
       android_signing:
@@ -42,6 +49,13 @@ workflows:
         submit_as_draft: true
   android-qa-workflow:
     name: Android QA Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'staging'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     environment:
       android_signing:
@@ -83,6 +97,13 @@ workflows:
         submit_as_draft: true
   android-prod-workflow:
     name: Android Prod Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'main'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     environment:
       android_signing:
@@ -124,6 +145,13 @@ workflows:
         submit_as_draft: true
   ios-dev-workflow:
     name: iOS Dev Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'dev'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     integrations:
       app_store_connect: Codemagic CI/CD
@@ -181,6 +209,13 @@ workflows:
         submit_to_app_store: false
   ios-qa-workflow:
     name: iOS QA Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'staging'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     integrations:
       app_store_connect: Codemagic CI/CD
@@ -238,6 +273,13 @@ workflows:
         submit_to_app_store: false
   ios-prod-workflow:
     name: iOS Prod Workflow
+    triggering:
+      events:                       # List the events that trigger builds
+        - push
+      branch_patterns:              # Include or exclude watched branches
+        - pattern: 'main'
+          include: true
+      cancel_previous_builds: true  # Set to `true` to automatically cancel outdated webhook builds
     max_build_duration: 120
     integrations:
       app_store_connect: Codemagic CI/CD
