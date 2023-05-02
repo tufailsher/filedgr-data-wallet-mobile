@@ -42,21 +42,21 @@ android {
             dimension "appType"
             resValue "string", "app_name", "FileDGR DEV"
             applicationIdSuffix ".dev"
-            versionCode 4
-            versionName "1.0.3"
+            versionCode 5
+            versionName "1.0.4"
         }
         qa {
             dimension "appType"
             resValue "string", "app_name", "FileDGR QA"
             applicationIdSuffix ".qa"
-            versionCode 4
-            versionName "1.0.3"
+            versionCode 5
+            versionName "1.0.4"
         }
         prod {
             resValue "string", "app_name", "FileDGR"
             dimension "appType"
-            versionCode 4
-            versionName "1.0.3"
+            versionCode 5
+            versionName "1.0.4"
         }
     }
 
