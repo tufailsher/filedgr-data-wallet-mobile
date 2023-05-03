@@ -7,7 +7,7 @@ name: Build & Test
 
 on:
   push:
-    branches: [ "main", "staging", dev" ]
+    branches: [ "main", "staging", "dev" ]
 
 jobs:
   build:
