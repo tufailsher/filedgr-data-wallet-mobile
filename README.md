@@ -1,5 +1,7 @@
 # FileDGR
 
+[![Build & Test](https://github.com/Filedgr/filedgr-data-wallet-mobile/actions/workflows/pipeline.yml/badge.svg)](https://github.com/Filedgr/filedgr-data-wallet-mobile/actions/workflows/pipeline.yml)
+
 | Environment | Android | iOS |
 |---|---|---|
 | Prod | [![Codemagic Android-Prod build status](https://api.codemagic.io/apps/6422ed8975bc9acc439995f7/android-prod-workflow/status_badge.svg)](https://codemagic.io/apps/6422ed8975bc9acc439995f7/android-prod-worflow/latest_build) | [![Codemagic iOS-Prod build status](https://api.codemagic.io/apps/6422ed8975bc9acc439995f7/ios-prod-workflow/status_badge.svg)](https://codemagic.io/apps/6422ed8975bc9acc439995f7/ios-prod-worflow/latest_build) |
