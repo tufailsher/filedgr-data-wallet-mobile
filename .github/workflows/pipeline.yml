@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2.10.0
-      with:
+        with:
           flutter-version: "3.3.2"
           channel: 'stable'
 
