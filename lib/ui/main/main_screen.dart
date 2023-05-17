@@ -1,4 +1,5 @@
 import 'package:file_dgr/generated/l10n.dart';
+import 'package:file_dgr/main.dart';
 import 'package:file_dgr/ui/about/about.dart';
 import 'package:file_dgr/ui/home/home.dart';
 import 'package:file_dgr/ui/utils/assets.dart';
@@ -12,25 +13,31 @@ import 'package:package_info_plus/package_info_plus.dart';
 class MainScreen extends StatefulWidget {
   final ThemeProvider themeProvider;
   final LocaleProvider localeProvider;
+  final String? notificationData;
+  final MenuOption? screenName;
 
   const MainScreen({
     super.key,
     required this.themeProvider,
     required this.localeProvider,
+    this.notificationData,
+    this.screenName,
   });
 
   @override
   State<MainScreen> createState() => _MainScreen();
 }
 
-class _MainScreen extends State<MainScreen> {
-  MenuOption _selectedItem = MenuOption.home;
+class _MainScreen extends State<MainScreen>
+    with WidgetsBindingObserver, RouteAware {
+  late MenuOption _selectedItem = widget.screenName ?? MenuOption.home;
   String? _flavorName;
 
   /// Initializes the state and loads the current flavor name.
   @override
   void initState() {
     super.initState();
+    MyApp.isInMainScreen = true;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
@@ -43,6 +50,29 @@ class _MainScreen extends State<MainScreen> {
         });
       });
     });
+  }
+
+  /// If the app has resumed and the screen is the MainScreen.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && MyApp.isInMainScreen) {
+      // _viewModel.getNewNotificationDataIfAny();
+    }
+  }
+
+  /// Sets [MyApp.isInMainScreen] to false.
+  @override
+  void didPushNext() {
+    // navigating forward to a new page
+    MyApp.isInMainScreen = false;
+  }
+
+  /// Sets [MyApp.isInMainScreen] to true.
+  @override
+  void didPopNext() {
+    // Covering route was popped off the navigator.
+    MyApp.isInMainScreen = true;
+    // _viewModel.getNewNotificationDataIfAny();
   }
 
   @override
@@ -69,8 +99,7 @@ class _MainScreen extends State<MainScreen> {
                 child: AppDrawer(
                   selectedItem: _selectedItem,
                   selectedThemeMode: widget.themeProvider.themeMode.name,
-                  selectedLocale:
-                      widget.localeProvider.supportedLocale,
+                  selectedLocale: widget.localeProvider.supportedLocale,
                   locales: widget.localeProvider.supportedLocales,
                   onSelected: (menuOption) {
                     Navigator.pop(context);
