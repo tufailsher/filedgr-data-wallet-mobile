@@ -14,7 +14,7 @@ workflows:
         - keystore_reference
       groups:
         - google_credentials
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up local.properties
         script: | 
@@ -62,7 +62,7 @@ workflows:
         - keystore_reference
       groups:
         - google_credentials
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up local.properties
         script: | 
@@ -110,7 +110,7 @@ workflows:
         - keystore_reference
       groups:
         - google_credentials
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up local.properties
         script: | 
@@ -161,7 +161,7 @@ workflows:
         bundle_identifier: com.filedgr.datawallet.temp1.dev
       vars:
         APP_ID: 6447195536
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up code signing settings on Xcode project
         script: | 
@@ -225,7 +225,7 @@ workflows:
         bundle_identifier: com.filedgr.datawallet.temp1.qa
       vars:
         APP_ID: 6447238765
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up code signing settings on Xcode project
         script: | 
@@ -289,7 +289,7 @@ workflows:
         bundle_identifier: com.filedgr.datawallet.temp1
       vars:
         APP_ID: 6447239036
-      flutter: stable
+      flutter: 3.3.2
     scripts:
       - name: Set up code signing settings on Xcode project
         script: | 
