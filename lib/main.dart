@@ -7,7 +7,6 @@ import 'package:file_dgr/ui/utils/locale_provider.dart';
 import 'package:file_dgr/ui/utils/theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -56,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             screenName: MenuOption.home,
           );
         },
-        routes: <RouteBase>[
+        routes: const <RouteBase>[
         ],
       ),
       GoRoute(
@@ -119,7 +118,7 @@ class _MyAppState extends State<MyApp> {
   ///
   /// The method is not needed using the current implementation. This relies on
   /// an another type of flow.
-  Future<void> _setupInteractedMessage() async {
+  /*Future<void> _setupInteractedMessage() async {
     // Get any messages which caused the application to open from
     // a terminated state.
     final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
@@ -133,15 +132,15 @@ class _MyAppState extends State<MyApp> {
     // Also handle any interaction when the app is in the background via a
     // Stream listener
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
-  }
+  }*/
 
   /// Handles a notification message detected by [_setupInteractedMessage].
   ///
   /// The method is not needed using the current implementation. This relies on
   /// an another type of flow.
-  void _handleMessage(RemoteMessage message) {
+  /*void _handleMessage(RemoteMessage message) {
     debugPrint('message: ---- ${message.data}');
-  }
+  }*/
 
   /// Initializes the state and retrieves the current app's theme.
   @override
