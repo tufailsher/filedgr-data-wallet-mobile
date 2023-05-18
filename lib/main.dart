@@ -55,8 +55,7 @@ class _MyAppState extends State<MyApp> {
             screenName: MenuOption.home,
           );
         },
-        routes: const <RouteBase>[
-        ],
+        routes: const <RouteBase>[],
       ),
       GoRoute(
         path: '/about',
@@ -83,8 +82,15 @@ class _MyAppState extends State<MyApp> {
     if (data == null) return;
 
     final obj = jsonDecode(data);
-    final screenName =
-        obj["screen_name"] == "home" ? "/" : "/${obj["screen_name"]}";
+    final String screenName;
+
+    if (obj["screen_name"] == "home") {
+      screenName = "/";
+    } else if (obj["screen_name"] == "about") {
+      screenName = "/about";
+    } else {
+      screenName = "/";
+    }
 
     _router.go(screenName);
 
