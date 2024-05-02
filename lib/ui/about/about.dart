@@ -16,6 +16,9 @@ class _AboutState extends State<About> {
   /// Initializes the state and retrieves the data.
   @override
   void initState() {
+
+
+
     super.initState();
     _viewModel.getData();
   }
